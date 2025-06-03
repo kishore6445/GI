@@ -11,9 +11,9 @@ const nextConfig = {
     domains: ['images.unsplash.com'],
     unoptimized: true,
   },
-  webpack: async (config, { isServer, dev }) => {
+  webpack: (config, { isServer, dev }) => {
     if (!isServer && !dev) {
-      const { default: MiniCssExtractPlugin } = await import('mini-css-extract-plugin');
+      const MiniCssExtractPlugin = require('mini-css-extract-plugin');
       config.plugins.push(
         new MiniCssExtractPlugin({
           filename: 'static/css/[contenthash].css',
@@ -25,7 +25,7 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
 
 
 // /** @type {import('next').NextConfig} */
